@@ -17,9 +17,9 @@ jobs:
           stack: "container"
           region: "eu"
         env:
-          HD_API_ID: ${{secrets.API_ID}}
+          HD_APP_ID: ${{secrets.APP_ID}}
           HD_API_HASH: ${{secrets.API_HASH}}
           HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
-          HD_ALD_USR: ${{secrets.ALD_USR}}
+          HD_AUTH_CHANNEL: ${{secrets.AUTH_CHANNEL}}
           HD_BASE_URL_OF_BOT: ${{secrets.BASE_URL_OF_BOT}}
           HD_OWNER_ID: ${{secrets.OWNER_ID}}

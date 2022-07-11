@@ -57,6 +57,6 @@ if __name__ == "__main__":
         ttkbot.loop.run_until_complete(get_rstuff())
     except:pass
     
-    logging.info("it's on!")
+    logging.info("The Bot Booted Let's GOOO")
 
     ttkbot.run_until_disconnected()

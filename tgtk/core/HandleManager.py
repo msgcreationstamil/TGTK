@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from telethon import TelegramClient,events 
 from telethon import __version__ as telever
 from pyrogram import __version__ as pyrover
@@ -214,26 +213,26 @@ def add_handlers(bot: TelegramClient):
 
 async def handle_leech_command(e):
     if not e.is_reply:
-        await e.reply("reply to a link or magnet.")
+        await e.reply("Reply to a link or magnet")
     else:
         rclone = False
         tsp = time.time()
-        buts = [[KeyboardButtonCallback("to telegram",data=f"leechselect tg {tsp}")]]
+        buts = [[KeyboardButtonCallback("To Telegram",data=f"leechselect tg {tsp}")]]
         if await get_config() is not None:
             buts.append(
-                [KeyboardButtonCallback("to drive",data=f"leechselect drive {tsp}")]
+                [KeyboardButtonCallback("To Drive",data=f"leechselect drive {tsp}")]
             )
         # tsp is used to split the callbacks so that each download has its own callback
         # cuz at any time there are 10-20 callbacks linked for leeching XD
            
         buts.append(
-                [KeyboardButtonCallback("upload in a zip.[Toggle]", data=f"leechzip toggle {tsp}")]
+                [KeyboardButtonCallback("Upload in a Zip.[Toggle]", data=f"leechzip toggle {tsp}")]
         )
         buts.append(
-                [KeyboardButtonCallback("extract from archive.[Toggle]", data=f"leechzipex toggleex {tsp}")]
+                [KeyboardButtonCallback("Extract from Archive.[Toggle]", data=f"leechzipex toggleex {tsp}")]
         )
         
-        conf_mes = await e.reply(f"<b>first click if you want to zip the contents or extract as an archive (only one will work at a time) then, </b>\n<b>choose where to upload your files: </b>\nthe files will be uploaded to default destination after {get_val('DEFAULT_TIMEOUT')} sec of no action by user.\n\n supported archives to extract are: .zip, 7z, tar, gzip2, iso, wim, rar, tar.gz,tar.bz2",parse_mode="html",buttons=buts)        
+        conf_mes = await e.reply(f"<b>First click if you want to zip the contents or extract as an archive (only one will work at a time) then, </b>\n<b>choose where to upload your files: </b>\nthe files will be uploaded to default destination after {get_val('DEFAULT_TIMEOUT')} sec of no action by user.\n\n supported archives to extract are: .zip, 7z, tar, gzip2, iso, wim, rar, tar.gz,tar.bz2",parse_mode="html",buttons=buts)        
         
         # zip check in background
         ziplist = await get_zip_choice(e,tsp)
@@ -261,12 +260,12 @@ async def handle_leech_command(e):
             if get_val("RCLONE_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext)
             else:
-                await e.reply("<b>rclone has been disabled by the administrator.</b>",parse_mode="html")
+                await e.reply("<b>DRIVE IS DISABLED BY THE ADMIN</b>",parse_mode="html")
         else:
             if get_val("LEECH_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext)
             else:
-                await e.reply("<b>telegram leech has been disabled by the administrator.</b>",parse_mode="html")
+                await e.reply("<b>TG LEECH IS DISABLED BY THE ADMIN</b>",parse_mode="html")
 
 
 async def get_leech_choice(e,timestamp):
@@ -343,19 +342,19 @@ async def get_leech_choice_callback(e,o_sender,lis,ts):
         # encompasses the None situation too
         print("data ",lis)
         if lis[1] is True:
-            await e.answer("will not be zipped", alert=True)
+            await e.answer("Will not be zipped", alert=True)
             lis[1] = False 
         else:
-            await e.answer("will be zipped", alert=True)
+            await e.answer("Will be zipped", alert=True)
             lis[1] = True
     elif data[1] == "toggleex":
         print("exdata ",lis)
         # encompasses the None situation too
         if lis[1] is True:
-            await e.answer("it will not be extracted.", alert=True)
+            await e.answer("It will not be extracted.", alert=True)
             lis[1] = False 
         else:
-            await e.answer("if it is a archive, it will be extracted. furthermore, you can add a password if the archive is password protected.", alert=True)
+            await e.answer("If it is a Archive, it will be extracted. furthermore, you can add a password if the archive is password protected.", alert=True)
             lis[1] = True
     else:
         lis[1] = data[1]
@@ -408,7 +407,7 @@ async def handle_settings_cb(e):
     if await is_admin(e.client,e.sender_id,e.chat_id):
         await handle_setting_callback(e)
     else:
-        await e.answer("you do not have the permission to touch this command.",alert=True)
+        await e.answer("⚠️ WARN ⚠️ Dont Touch Admin Settings.",alert=True)
 
 async def handle_upcancel_cb(e):
     db = upload_db
@@ -419,9 +418,9 @@ async def handle_upcancel_cb(e):
 
     if str(e.sender_id) == data[3]:
         db.cancel_download(data[1],data[2])
-        await e.answer("the upload has been canceled.")
+        await e.answer("Upload has been canceled;")
     else:
-        await e.answer("you can't cancel other peoples uploads.",alert=True)
+        await e.answer("⚠️ WARN ⚠️ Dont Touch Admin Settings.",alert=True)
 
 
 async def callback_handler_canc(e):

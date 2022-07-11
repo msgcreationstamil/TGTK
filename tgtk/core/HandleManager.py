@@ -564,7 +564,7 @@ async def set_password_zip(message):
             await message.reply(f"cannot update the password since this isn't your download.")
 
 async def start_handler(event):
-    msg = "TK - A Telegram Leecher Bot."
+    msg = "Tortoolkit by MSGSURYA "
     await event.reply(msg, parse_mode="html")
 
 def progress_bar(percentage):
@@ -730,7 +730,7 @@ async def about_me(message):
     diff = Human_Format.human_readable_timedelta(diff)
 
     msg = (
-        "<b>name</b>: <code>tgtk</code>\n"
+        "<b>name</b>: <code>Tortoolkit</code>\n"
         f"<b>version</b>: <code>{__version__}</code>\n"
         f"<b>telethon Version</b>: {telever}\n"
         f"<b>pyrogram Version</b>: {pyrover}\n"

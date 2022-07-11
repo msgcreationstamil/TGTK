@@ -17,11 +17,11 @@ TIMEOUT_SEC = 60
 # this file will contian all the handlers and code for settings
 # code can be more modular i think but not bothering now
 # todo make the code more modular
-no = "✖"
-yes = "✔"
+no = "❌"
+yes = "✅"
 # Central object is not used its Acknowledged 
 tordb = tkdb()
-header =  '<b>tgtk - a telegram leech bot.</b>\n<u>administrator menu</u>'
+header =  '<b>Tortoolkit by MSG SURYA</b>\n<u>administrator menu</u>'
 async def handle_setting_callback(e):
     db = tordb
     session_id,_ = db.get_variable("SETTING_AUTH_CODE")

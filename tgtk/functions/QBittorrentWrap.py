@@ -256,7 +256,7 @@ async def update_progress(client,message,torrent,task,except_retry=0,sleepsec=No
 
                     await task.set_path(savepath)
                     await task.set_done()
-                    await message.edit("Download completed ```{}```. To path ```{}```".format(tor_info.name,tor_info.save_path),buttons=None)
+                    await message.edit("download completed: `{}` - (`{}`)\nto path: `{}`".format(tor_info.name,human_readable_bytes(tor_info.total_size),tor_info.save_path),buttons=None)
                     return [savepath, task]
                 else:
                     #return await update_progress(client,message,torrent)
@@ -407,7 +407,7 @@ async def register_torrent(entity,message,user_msg=None,magnet=False,file=False)
             data = "torcancel {} {}".format(torrent.hash, omess.sender_id)
             base = get_val("BASE_URL_OF_BOT")
 
-            urll = f"{base}/tortk/files/{torrent.hash}"
+            urll = f"{base}/tgtk/files/{torrent.hash}"
 
             message = await message.edit("Download will be automatically started after 180s of no action.",buttons=[
                 [
@@ -449,7 +449,7 @@ async def register_torrent(entity,message,user_msg=None,magnet=False,file=False)
 
             base = get_val("BASE_URL_OF_BOT")
 
-            urll = f"{base}/tortk/files/{torrent.hash}"
+            urll = f"{base}/tgtk/files/{torrent.hash}"
 
             message = await message.edit(buttons=[
                 [

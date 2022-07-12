@@ -438,7 +438,7 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
         force_docs = user_db.get_var("FORCE_DOCUMENTS",user_msg.sender_id)
     
     # Avoid Flood in Express
-    await asyncio.sleep(int(get_val("EDIT_SLEEP_SECS"))+5)
+    await asyncio.sleep(5)
 
     metadata = extractMetadata(createParser(path))
     
@@ -531,7 +531,7 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
                     # reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        f"uploading {os.path.basename(path)}",
+                        f"{os.path.basename(path)}",
                         message_for_progress_display,
                         start_time,
                         tout,
@@ -586,7 +586,7 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
                     # reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        f"uploading {os.path.basename(path)}",
+                        f"{os.path.basename(path)}",
                         message_for_progress_display,
                         start_time,
                         tout,
@@ -627,7 +627,7 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
                     progress=progress_for_pyrogram,
                     caption=caption_str,
                     progress_args=(
-                        f"💠 Uploading {os.path.basename(path)}",
+                        f"{os.path.basename(path)}",
                         message_for_progress_display,
                         start_time,
                         tout,

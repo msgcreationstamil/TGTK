@@ -30,6 +30,8 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--seed-time=1")
     aria2_daemon_start_cmd.append("--split=10")
     aria2_daemon_start_cmd.append(f"--bt-stop-timeout=100")
+    aria2_daemon_start_cmd.append(f"--max-tries=10")
+    aria2_daemon_start_cmd.append(f"--retry-wait=2")
     #
     torlog.debug(aria2_daemon_start_cmd)
     #
@@ -187,7 +189,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message, task, rdept
                 aria2, gid, event, previous_message,task,user_msg=user_msg
             )
         else:
-            await event.edit(f"download completed: <code>{file.name}</code> to path <code>{file.name}</code>",parse_mode="html", buttons=None)
+            await event.edit(f"download completed: `{file.name}` - (`{file.total_length_string()}`)", buttons=None)
             return True, "download complete"
     except aria2p.client.ClientException as e:
         if " not found" in str(e) or "'file'" in str(e):

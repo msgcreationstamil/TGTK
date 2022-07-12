@@ -61,7 +61,7 @@ async def upload_to_tg(message, dirname: str, post: Post, sender_id: int) -> Non
                 else:
                     media.append(ab_path)
                     caption = get_caption(post)[:1023]
-                    caption += f"\n\n<a href='tg://user?id={sender_id}'>completed.</a>"
+                    caption += f"\n\n<a href='tg://user?id={sender_id}'>completed.\n</a>"
                     captioned = True
         if media:
             await message.client.send_file(message.chat_id, media,caption=caption,parse_mode="html", reply_to=message.id)
@@ -92,7 +92,7 @@ async def upload_to_tg(message, dirname: str, post: Post, sender_id: int) -> Non
                     entity=message.chat_id,
                     file=ab_path,
                     thumb=thumb,
-                    caption=get_caption(post)[:1023] + f"\n\n<a href='tg://user?id={sender_id}'>completed.</a>",
+                    caption=get_caption(post)[:1023] + f"\n\n<a href='tg://user?id={sender_id}'>completed.\n</a>",
                     parse_mode="html",
                     reply_to=message.id)
                 if thumb is not None:

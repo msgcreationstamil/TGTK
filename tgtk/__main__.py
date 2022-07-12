@@ -34,7 +34,7 @@ if __name__ == "__main__":
         exqueue.put_nowait(i)
     
     # Telethon client creation
-    ttkbot = tgtkclient("tgtkbot",get_val("API_ID"),get_val("API_HASH"))
+    ttkbot = tgtkclient("tgtkbot",get_val("API_ID"),get_val("API_HASH"), timeout=20, retry_delay=3, request_retries=10, connection_retries=10)
     ttkbot.queue = queue
     ttkbot.exqueue = exqueue
     ttkbot.start(bot_token=get_val("BOT_TOKEN"))
@@ -57,6 +57,6 @@ if __name__ == "__main__":
         ttkbot.loop.run_until_complete(get_rstuff())
     except:pass
     
-    logging.info("The Bot Booted Let's GOOO")
+    logging.info("it's on!")
 
     ttkbot.run_until_disconnected()
